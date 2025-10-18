@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Study Hub</title>
+  <link rel="stylesheet" href="styles/auth.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <div class="auth-container">
+    <h1 class="pixel-title">Welcome Back!</h1>
+    <form class="auth-form" onsubmit="handleLogin(event); return false;">
+      <input type="email" id="login-email" placeholder="Email" required>
+      <input type="password" id="login-password" placeholder="Password" required>
+      <button type="submit" class="pixel-btn">Log In</button>
+      <p class="link"><a href="forgot.html">Forgot Password?</a></p>
+      <p class="link">New here? <a href="signup.html">Create Account</a></p>
+      <p class="link" style="margin-top: 20px;"><a href="main.html" style="color: #facc15;">Go to Main Page</a></p>
+    </form>
+  </div>
+
+  <script src="scripts/auth.js"></script>
+
+</body>
+</html>
+

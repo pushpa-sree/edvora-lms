@@ -1,0 +1,107 @@
+body {
+  background: linear-gradient(180deg, #0f1226, #14172c);
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  image-rendering: pixelated;
+}
+
+/* --- Container & Title --- */
+.auth-container {
+  background: #1a1c35;
+  border: 3px solid #2a2d55;
+  border-radius: 8px;
+  padding: 3rem 3rem;
+  text-align: center;
+  width: 90%;
+  max-width: 430px;
+  box-shadow: 0 8px 0 #0a0b1a;
+}
+
+.pixel-title {
+  font-size: 1.4rem; /* larger title text */
+  color: #facc15;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}
+
+/* --- Input Fields --- */
+.auth-form input {
+  width: 100%;
+  background: #10132a;
+  border: 2px solid #2a2d55;
+  border-radius: 6px;
+  padding: 0.9rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem; /* bigger text inside input boxes */
+}
+
+.auth-form input::placeholder {
+  font-size: 0.8rem; /* larger placeholder text */
+}
+
+/* --- Buttons --- */
+.pixel-btn {
+  background: #facc15;
+  color: #000;
+  border: none;
+  padding: 1rem 1.2rem;
+  font-weight: bold;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #ad850e;
+  transition: 0.2s;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem; /* larger button text */
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.pixel-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* --- Link Texts --- */
+.link {
+  font-size: 0.8rem; /* increased from 0.6 */
+  margin-top: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+}
+
+.link a {
+  color: #facc15;
+  text-decoration: none;
+  font-size: 0.9rem; /* “Forgot Password?” & “Create Account” larger */
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+
+.auth-form select {
+  width: 100%;
+  background: #10132a;
+  border: 2px solid #2a2d55;
+  border-radius: 6px;
+  padding: 0.9rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.auth-form select option {
+  background: #10132a;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+}

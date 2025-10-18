@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgot Password | Study Hub</title>
+  <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h1 class="pixel-title">Reset Password</h1>
+    <form class="auth-form" onsubmit="return handleForgot(event)">
+      <input type="email" id="forgot-email" placeholder="Enter your email" required>
+      <button type="button" class="pixel-btn" onclick="sendOTP()">Send OTP</button>
+      <input type="text" id="forgot-otp" placeholder="Enter OTP" required>
+      <input type="password" id="new-pass" placeholder="New Password" required>
+      <button type="submit" class="pixel-btn">Update Password</button>
+      <p class="link"><a href="login.html">Back to Login</a></p>
+    </form>
+  </div>
+
+ <script src="scripts/auth.js"></script>
+
+
+</body>
+</html>

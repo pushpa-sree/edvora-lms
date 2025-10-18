@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Study Hub</title>
+  <link rel="stylesheet" href="styles/auth.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <div class="auth-container">
+    <h1 class="pixel-title">Create Your Account</h1>
+    
+    <!-- IMPORTANT: Add onsubmit here -->
+    <form class="auth-form" onsubmit="handleSignup(event)">
+      <input type="email" id="signup-email" placeholder="Email" required>
+      <input type="password" id="signup-password" placeholder="Password" required>
+      <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
+
+      <select id="signup-role" required>
+        <option value="" disabled selected>Select Role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+
+
+      <button type="submit" class="pixel-btn">Sign Up</button>
+      <p class="link">Already have an account? <a href="login.html">Login</a></p>
+
+      <p class="link" style="margin-top: 20px;"><a href="main.html" style="color: #facc15;">Go to Main Page</a></p>
+    </form>
+  </div>
+
+  <!-- IMPORTANT: This must be at the bottom -->
+  <script src="scripts/auth.js"></script>
+</body>
+</html>

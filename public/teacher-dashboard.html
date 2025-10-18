@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - EDVORA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/teacher-dashboard.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <h1>👨‍🏫 Teacher Dashboard</h1>
+        <p>EDVORA - Teaching Management System</p>
+      </div>
+      <div class="header-right">
+        <div class="user-info">
+          <p>Welcome back,</p>
+          <h3 id="teacher-name">Teacher</h3>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()">Logout</button>
+      </div>
+    </header>
+
+    <div class="success-message" id="successMessage"></div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h4>Total Courses</h4>
+        <div class="number" id="totalCourses">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Total Students</h4>
+        <div class="number" id="totalStudents">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Pending Assignments</h4>
+        <div class="number" id="pendingAssignments">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>To Grade</h4>
+        <div class="number" id="toGrade">0</div>
+      </div>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-tab="courses">📚 Courses</button>
+      <button class="tab-btn" data-tab="assignments">📝 Assignments</button>
+      <button class="tab-btn" data-tab="students">👥 Students</button>
+      <button class="tab-btn" data-tab="grading">✅ Grading</button>
+      <button class="tab-btn" data-tab="analytics">📊 Analytics</button>
+      <button class="tab-btn" data-tab="forum">💬 Forum</button>
+    </div>
+
+    <!-- Courses Tab -->
+    <div id="courses" class="tab-content active">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>My Courses</h2>
+        <button class="btn-primary" onclick="openCreateCourseModal()">+ Create Course</button>
+      </div>
+      <div id="coursesGrid" class="grid"></div>
+    </div>
+
+    <!-- Assignments Tab -->
+    <div id="assignments" class="tab-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Assignments</h2>
+        <button class="btn-primary" onclick="openCreateAssignmentModal()">+ Create Assignment</button>
+      </div>
+      <div id="assignmentsGrid" class="grid"></div>
+    </div>
+
+    <!-- Students Tab -->
+    <div id="students" class="tab-content">
+      <div style="margin-bottom: 20px;">
+        <h2>Enrolled Students</h2>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Email</th>
+              <th>Course</th>
+              <th>Enrollment Date</th>
+              <th>Attendance</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTable">
+            <tr>
+              <td colspan="6" style="text-align: center; color: #a0aec0;">No students enrolled yet</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Grading Tab -->
+    <div id="grading" class="tab-content">
+      <h2>Grade Submissions</h2>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Assignment</th>
+              <th>Course</th>
+              <th>Submitted</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="submissionsTable">
+            <tr>
+              <td colspan="6" style="text-align: center; color: #a0aec0;">No submissions to grade</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div id="analytics" class="tab-content">
+      <h2 style="margin-bottom: 30px;">📊 Analytics & Reports</h2>
+      <div class="grid">
+        <div class="chart-container">
+          <h3 class="chart-title">Attendance by Course</h3>
+          <canvas id="attendanceChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3 class="chart-title">Grade Distribution</h3>
+          <canvas id="gradesChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3 class="chart-title">Assignment Submission Rate</h3>
+          <canvas id="submissionChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum Tab -->
+    <div id="forum" class="tab-content">
+      <h2 style="margin-bottom: 20px;">💬 Discussion Forum</h2>
+      <p style="color: #a0aec0; margin-bottom: 25px;">Manage course discussion boards and Q&A threads.</p>
+
+      <div id="forum-threads-container">
+        <div class="discussion-thread">
+          <h4>General Course Discussion</h4>
+          <div class="chat-bubble">
+            <p><strong>Student:</strong> Can you clarify the assignment requirements?</p>
+            <span class="chat-meta">Oct 16, 2025</span>
+          </div>
+          <div class="chat-bubble">
+            <p><strong>Teacher Response:</strong> Sure! The assignment focuses on practical implementation...</p>
+            <span class="chat-meta">Oct 16, 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reply-box-container">
+        <textarea class="reply-box" placeholder="Post a message or reply to discussion..."></textarea>
+        <button class="btn-primary">Post</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Course Modal -->
+  <div id="createCourseModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create New Course</h2>
+        <button class="close-btn" onclick="closeModal('createCourseModal')">&times;</button>
+      </div>
+      <form onsubmit="handleCreateCourse(event)">
+        <div class="form-group">
+          <label>Course Title</label>
+          <input type="text" id="courseTitle" required placeholder="Enter course title">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="courseDescription" required placeholder="Enter course description"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Duration (weeks)</label>
+          <input type="number" id="courseDuration" required min="1" placeholder="e.g., 12">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Create Course</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Assignment Modal -->
+  <div id="createAssignmentModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create Assignment</h2>
+        <button class="close-btn" onclick="closeModal('createAssignmentModal')">&times;</button>
+      </div>
+      <form onsubmit="handleCreateAssignment(event)">
+        <div class="form-group">
+          <label>Select Course</label>
+          <select id="assignmentCourse" required>
+            <option value="">Choose a course...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Assignment Title</label>
+          <input type="text" id="assignmentTitle" required placeholder="Enter assignment title">
+        </div>
+        <div class="form-group">
+          <label>Instructions</label>
+          <textarea id="assignmentInstructions" required placeholder="Enter assignment instructions"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Due Date</label>
+          <input type="date" id="assignmentDueDate" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Create Assignment</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Grade Submission Modal -->
+  <div id="gradeModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Grade Submission</h2>
+        <button class="close-btn" onclick="closeModal('gradeModal')">&times;</button>
+      </div>
+      <form onsubmit="handleGradeSubmission(event)">
+        <div class="form-group">
+          <label>Student Name</label>
+          <input type="text" id="gradingStudentName" disabled>
+        </div>
+        <div class="form-group">
+          <label>Assignment</label>
+          <input type="text" id="gradingAssignmentName" disabled>
+        </div>
+        <div class="form-group">
+          <label>Score (out of 100)</label>
+          <input type="number" id="gradeScore" required min="0" max="100" placeholder="e.g., 85">
+        </div>
+        <div class="form-group">
+          <label>Feedback</label>
+          <textarea id="gradeFeedback" required placeholder="Enter detailed feedback"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Submit Grade</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="scripts/teacher-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Hub</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <span class="logo">🟡 EDVORA </span>
+    </div>
+    <ul class="nav-center">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="login-btn">Login</button>
+      <button class="signup-btn">Sign Up</button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero section" id="home">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h4>START YOUR</h4>
+        <h1><span class="white-text">Learning</span> <span class="gradient-text">Adventure</span></h1>
+        <p>Your Space to Learn, Grow, and Achieve. ✨</p>
+        <button class="cta-btn">Get Started</button>
+      </div>
+      <div class="hero-img">
+        <img src="sources/mainSources/mario.gif" alt="Learning Character" class="hero-gif"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES SECTION -->
+  <section id="courses" class="courses-section section">
+    <h2 class="section-title">Explore Our Courses</h2>
+    <div class="courses-grid">
+      <div class="course-card">
+        <img src="sources/mainSources/webdev.jpg" alt="Web Development">
+        <h3>Web Development</h3>
+        <p>Craft stunning websites using HTML, CSS, and JS.</p>
+        <button class="start-btn">Start</button>
+      </div>
+      <div class="course-card">
+        <img src="sources/mainSources/pythoncourse.jpg" alt="Python Basics">
+        <h3>Python Basics</h3>
+        <p>Master the fundamentals of Python with real exercises.</p>
+        <button class="start-btn">Start</button>
+      </div>
+      <div class="course-card">
+        <img src="sources/mainSources/uiux.jpg" alt="UI/UX Design">
+        <h3>UI/UX Design</h3>
+        <p>Design user-friendly experiences with creativity.</p>
+        <button class="start-btn">Start</button>
+      </div>
+      <div class="course-card">
+        <img src="sources/mainSources/database.jpg" alt="Database Fundamentals">
+        <h3>Database Fundamentals</h3>
+        <p>Understand databases and data management easily.</p>
+        <button class="start-btn">Start</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about-section section">
+    <div class="about-container">
+      <img src="assets/pixel-about.png" alt="About Study Hub" class="about-img">
+      <div class="about-text">
+        <h2>About Study Hub</h2>
+        <p>
+          Study Hub is your creative learning companion — making education fun and rewarding. 
+          Learn at your pace through interactive lessons and a community of learners.
+        </p>
+        <button class="learn-btn">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section id="reviews" class="reviews-section section">
+    <h2 class="section-title">What Our Students Say</h2>
+    <div class="reviews-grid">
+      <div class="review-card"><p>“Learning feels like a game here!”</p><h4>- Aisha M.</h4></div>
+      <div class="review-card"><p>“The pixel art and interactivity are amazing.”</p><h4>- Rohan K.</h4></div>
+      <div class="review-card"><p>“Makes studying actually enjoyable!”</p><h4>- Meera S.</h4></div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact-section section">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <p><i class='bx bx-map'></i> 123 Study Lane, Learn City</p>
+        <p><i class='bx bx-phone'></i> +91 98765 43210</p>
+        <p><i class='bx bx-envelope'></i> hello@studyhub.com</p>
+      </div>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit" class="send-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- POPUP MESSAGE -->
+  <div class="popup hidden" id="popup-msg">
+    <div class="popup-content">
+      <h3>🎉 Great Choice!</h3>
+      <p>You’re about to start this course. Redirecting to signup...</p>
+    </div>
+  </div>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
