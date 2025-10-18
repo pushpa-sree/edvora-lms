@@ -8,24 +8,27 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/User');
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
-// Middleware
+// middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Session
+// session 
 app.use(session({
     secret: process.env.SECRET || 'mysecretkey',
     resave: false,
     saveUninitialized: false
 }));
 
-// Passport
+// passport
 app.use(passport.initialize());
 app.use(passport.session());
+// passport.use(new LocalStrategy(User.authenticate()));
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
@@ -33,25 +36,13 @@ passport.use(new LocalStrategy({
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// MongoDB connection
+// mongodb
 mongoose.connect(process.env.MONGO_URI)
-  .then(async () => {
-    console.log("✅ Connected to MongoDB");
-
-    // --- Test Insert ---
-    const testSchema = new mongoose.Schema({
-      name: String,
-      createdAt: { type: Date, default: Date.now }
-    });
-
-    const Test = mongoose.model('Test', testSchema);
-    const doc = new Test({ name: "Hello Atlas!" });
-    await doc.save();
-    console.log("✅ Test document saved to Atlas!");
-  })
+  .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Routes
+
+// routes
 const authRoutes = require('./routes/auth');
 const studentRoutes = require('./routes/student');
 const teacherRoutes = require('./routes/teacher');
@@ -59,12 +50,13 @@ app.use('/api/auth', authRoutes);
 app.use('/api/student', studentRoutes);
 app.use('/api/teacher', teacherRoutes);
 
-// Static files
+// Serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
+// Serve HTML files
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/main.html')));
 
-// Server
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
