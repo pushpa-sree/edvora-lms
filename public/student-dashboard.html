@@ -3,189 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - EDVORA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/student-dashboard.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="styles/student-dashboard.css"> <!-- Your CSS file -->
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <header>
             <div class="header-left">
-                <h1>Student Dashboard</h1>
-                <p>EDVORA - Learning Management System</p>
+                <h1>Student Portal</h1>
+                <p>Welcome back, Darshini!</p>
             </div>
             <div class="header-right">
+                <input type="text" placeholder="Search..." id="searchBar">
+                <button class="btn-secondary" id="notifBtn">🔔</button>
                 <div class="user-info">
-                    <p>Welcome,</p>
-                    <h3 id="student-name">Student</h3>
+                    <p>Darshini</p>
+                    <img src="https://via.placeholder.com/40" alt="avatar" style="border-radius:50%;">
                 </div>
-                <button class="btn-logout" onclick="handleLogout()">Logout</button>
             </div>
         </header>
 
-        <div class="success-message" id="successMessage"></div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h4>Enrolled Courses</h4>
-                <div class="number" id="totalCourses">0</div>
-            </div>
-            <div class="stat-card">
-                <h4>Total Assignments</h4>
-                <div class="number" id="totalAssignments">0</div>
-            </div>
-            <div class="stat-card">
-                <h4>Pending Assignments</h4>
-                <div class="number" id="pendingAssignments">0</div>
-            </div>
-            <div class="stat-card">
-                <h4>Average Grade</h4>
-                <div class="number" id="averageGrade">N/A</div>
-            </div>
-        </div>
-
+        <!-- Navigation Tabs -->
         <div class="nav-tabs">
-            <button class="tab-btn active" data-tab="courses">My Courses</button>
-            <button class="tab-btn" data-tab="assignments">Assignments</button>
-            <button class="tab-btn" data-tab="grades">Grades</button>
-            <button class="tab-btn" data-tab="analytics">Progress</button>
-            <button class="tab-btn" data-tab="forum">Forum</button>
+            <button class="active" data-tab="dashboard">Dashboard</button>
+            <button data-tab="courses">My Courses</button>
+            <button data-tab="assignments">Assignments</button>
+            <button data-tab="grades">Grades & Progress</button>
+            <button data-tab="forum">Discussion Forum</button>
+            <button data-tab="peers">Suggested Peers</button>
+            <button data-tab="certificates">Certificates</button>
+            <button data-tab="profile">Profile</button>
         </div>
 
-        <div id="courses" class="tab-content active">
-            <div style="margin-bottom: 20px;">
-                <h2>My Enrolled Courses</h2>
+        <!-- Tab Contents -->
+        <div id="dashboard" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Courses Enrolled</h4>
+                    <div class="number" id="coursesCount">5</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Assignments Pending</h4>
+                    <div class="number" id="assignmentsCount">2</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Current Courses</h4>
+                    <div class="number" id="currentCourses">3</div>
+                </div>
             </div>
-            <div id="coursesGrid" class="grid"></div>
+            <div class="card">
+                <h3>Announcements</h3>
+                <p>No new announcements.</p>
+            </div>
+            <div class="card">
+                <h3>Streak Tracker</h3>
+                <p>🔥 5 days learning streak!</p>
+            </div>
+            <div class="card">
+                <h3>Calendar</h3>
+                <p>Upcoming deadlines highlighted.</p>
+            </div>
+        </div>
+
+        <div id="courses" class="tab-content">
+            <div class="grid" id="coursesGrid">
+                <!-- Course Cards -->
+            </div>
         </div>
 
         <div id="assignments" class="tab-content">
-            <div style="margin-bottom: 20px;">
-                <h2>Assignments Due</h2>
+            <div class="nav-tabs" style="margin-bottom:15px;">
+                <button class="active" data-status="upcoming">Upcoming</button>
+                <button data-status="submitted">Submitted</button>
+                <button data-status="graded">Graded</button>
             </div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Assignment Title</th>
-                            <th>Course</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="assignmentsTable">
-                        <tr>
-                            <td colspan="5" style="text-align: center; color: #a0aec0;">No assignments currently due.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="assignmentsList">
+                <!-- Assignment Items -->
             </div>
         </div>
 
         <div id="grades" class="tab-content">
-            <h2>My Grades</h2>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Assignment</th>
-                            <th>Course</th>
-                            <th>Score</th>
-                            <th>Status</th>
-                            <th>Feedback</th>
-                        </tr>
-                    </thead>
-                    <tbody id="gradesTable">
-                        <tr>
-                            <td colspan="5" style="text-align: center; color: #a0aec0;">No grades available yet.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="analytics" class="tab-content">
-            <h2 style="margin-bottom: 30px;">My Progress & Analytics</h2>
-            <div class="grid">
-                <div class="chart-container">
-                    <h3 class="chart-title">Assignment Completion Rate</h3>
-                    <canvas id="completionChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <h3 class="chart-title">Recent Grades</h3>
-                    <canvas id="recentGradesChart"></canvas>
-                </div>
+            <div class="grid" id="gradesGrid">
+                <!-- Grades Cards -->
             </div>
         </div>
 
         <div id="forum" class="tab-content">
-            <h2 style="margin-bottom: 20px;">Discussion Forum</h2>
-            <p style="color: #a0aec0; margin-bottom: 25px;">Engage with your peers and teacher on course topics.</p>
-
-            <div id="forum-threads-container">
-                <div class="discussion-thread">
-                    <h4>General Course Discussion</h4>
-                    <div class="chat-bubble">
-                        <p><strong>Teacher:</strong> Welcome to the course!</p>
-                        <span class="chat-meta">Oct 15, 2025</span>
-                    </div>
-                    <div class="chat-bubble">
-                        <p><strong>Peer:</strong> Does anyone have a study group for Chapter 3?</p>
-                        <span class="chat-meta">Oct 17, 2025</span>
-                    </div>
-                </div>
+            <div id="threadsList">
+                <!-- Threads -->
             </div>
-
             <div class="reply-box-container">
-                <textarea class="reply-box" placeholder="Post a message or reply to discussion..."></textarea>
-                <button class="btn-primary">Post</button>
+                <textarea id="newThread" class="reply-box" placeholder="Post a new question..."></textarea>
+                <button class="btn-primary" id="postThreadBtn">Post</button>
             </div>
         </div>
-    </div>
 
-    <div id="submitAssignmentModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Submit Assignment</h2>
-                <button class="close-btn" onclick="closeModal('submitAssignmentModal')">X</button>
+        <div id="peers" class="tab-content">
+            <div class="grid" id="peersGrid">
+                <!-- Suggested Peers -->
             </div>
-            <form onsubmit="handleSubmitAssignment(event)">
-                <div class="form-group">
-                    <label>Assignment Title</label>
-                    <input type="text" id="submissionAssignmentTitle" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Submission Content / Link</label>
-                    <textarea id="submissionContent" required placeholder="Paste your essay, code, or a link to your file/repo here."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Upload File (Optional)</label>
-                    <input type="file" id="submissionFile">
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Submit Work</button>
-            </form>
         </div>
-    </div>
 
-    <div id="feedbackModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Assignment Feedback</h2>
-                <button class="close-btn" onclick="closeModal('feedbackModal')">X</button>
+        <div id="certificates" class="tab-content">
+            <div class="grid" id="certificatesGrid">
+                <!-- Certificates -->
             </div>
-            
-            <p style="margin-bottom: 10px;"><strong>Assignment:</strong> <span id="feedbackAssignment"></span></p>
-            <p style="margin-bottom: 20px;"><strong>Score:</strong> <span id="feedbackScore" style="color: #27ae60; font-weight: 700;"></span> / 100</p>
-            
-            <div class="form-group">
-                <label>Teacher Feedback</label>
-                <textarea id="feedbackText" disabled style="min-height: 150px; background: #16213e; color: #fff;"></textarea>
-            </div>
-            
         </div>
+
+      <div id="profile" class="tab-content">
+    <div class="modal-content">
+        <h2>Edit Profile</h2>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="profileName" value="Darshini">
+        </div>
+        <div class="form-group">
+            <label>Bio</label>
+            <textarea id="profileBio">BTech Student</textarea>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="profileEmail" value="darshini@example.com">
+        </div>
+        <button id="saveProfileBtn">Save Changes</button>
+        <p id="profileMessage" class="success-message">Profile Updated!</p>
     </div>
+</div>
 
     <script src="scripts/student-dashboard.js"></script>
 </body>
