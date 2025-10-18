@@ -83,8 +83,7 @@
                     </button>
                 </div>
                 
-                <button class="btn-secondary" id="notifBtn" style="width: 45px; height: 45px; border-radius: 50%; font-size: 20px;">🔔</button>
-                
+                <button class="btn-secondary" id="notifBtn" style="width: 45px; height: 45px; border-radius: 50%; font-size: 20px; display: flex; align-items: center; justify-content: center; padding: 0;">🔔</button>                
                 <div class="user-info" style="display: flex; align-items: center; gap: 10px;">
                     <div style="text-align: right;">
                         <p id="headerUserName" style="margin: 0; font-weight: 600; color: #667eea;">Student</p>
@@ -105,6 +104,9 @@
                         box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
                     ">S</div>
                 </div>
+                 <button class="btn-logout" onclick="handleLogout()">Logout</button>
+
+
             </div>
         </header>
 
@@ -161,6 +163,9 @@
                 <button class="active" data-status="upcoming">Upcoming</button>
                 <button data-status="submitted">Submitted</button>
                 <button data-status="graded">Graded</button>
+            </div>
+            <div id="assignmentsList">
+                <!-- Assignment Items -->
             </div>
             <div id="assignmentsList">
                 <!-- Assignment Items -->

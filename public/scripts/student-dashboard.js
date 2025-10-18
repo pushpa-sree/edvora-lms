@@ -126,6 +126,40 @@ function renderAssignments(status){
 }
 renderAssignments('upcoming');
 
+function renderThreads(){
+    const threadsList = document.getElementById('threadsList');
+    threadsList.innerHTML = '';
+    threads.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'discussion-thread';
+        div.innerHTML = `
+            <h4>${t.user}</h4>
+            <div class="chat-bubble">${t.message}</div>
+            <div class="chat-meta">${t.time}</div>`;
+        threadsList.appendChild(div);
+    });
+}
+renderThreads();
+
+document.getElementById('postThreadBtn').addEventListener('click', () => {
+    const msg = document.getElementById('newThread').value.trim();
+    if(msg){
+        threads.unshift({user:"You", message:msg, time:"Just now"});
+        document.getElementById('newThread').value='';
+        renderThreads();
+    }
+});
+function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        // Clear any stored user data
+        localStorage.removeItem('user');
+        sessionStorage.clear();
+        
+        // Redirect to login page
+        window.location.href = 'login.html'; // or your login page
+    }
+}
+
 // Render Grades
 const gradesGrid = document.getElementById('gradesGrid');
 if (gradesGrid) {
