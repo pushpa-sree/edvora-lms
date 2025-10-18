@@ -225,16 +225,21 @@ if (certificatesGrid) {
     });
 }
 
-// Profile Save
-const saveProfileBtn = document.getElementById('saveProfileBtn');
-if (saveProfileBtn) {
-    saveProfileBtn.addEventListener('click', () => {
-        const name = document.getElementById('profileName').value;
-        const bio = document.getElementById('profileBio').value;
-        const profileMessage = document.getElementById('profileMessage');
-        if (profileMessage) {
-            profileMessage.classList.add('show');
-            setTimeout(()=>profileMessage.classList.remove('show'),2000);
-        }
-    });
-}
+
+// ---------------- Profile ----------------
+document.getElementById('saveProfileBtn').addEventListener('click', () => {
+    // Update userProfile
+    userProfile.name = document.getElementById('profileName').value;
+    userProfile.bio = document.getElementById('profileBio').value;
+    userProfile.email = document.getElementById('profileEmail').value;
+
+    // Update header and avatar
+    document.querySelector('.header-left p').textContent = 'Welcome back, ${userProfile.name}!';
+    document.querySelector('.user-info p').textContent = userProfile.name;
+    document.querySelector('.user-info img').src = userProfile.avatar;
+
+    // Success message
+    const msg = document.getElementById('profileMessage');
+    msg.style.display = 'block';
+    setTimeout(()=>{ msg.style.display='none'; },2000);
+});
