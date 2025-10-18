@@ -8,6 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/User');
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -35,9 +37,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // mongodb
-mongoose.connect(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/LMShackathon')
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
+
 
 // routes
 const authRoutes = require('./routes/auth');
