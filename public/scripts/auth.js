@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api/auth";
+const BASE_URL = "https://edvora-lms-uz2l.onrender.com/api/auth";
 
 // New function to handle redirection to main.html
 function goToMainPage() {
